@@ -185,8 +185,6 @@ class Exp_Long_Term_Forecast_Partial(Exp_Basic):
                                                  dec_inp.permute(0, 2, 1).reshape(B * N, Ty, 1), batch_y_mark).reshape(
                                 B, N, -1).permute(0, 2, 1)
                         else:
-                            a = batch_x.permute(0, 2, 1)
-                            b = batch_x.permute(0, 2, 1).reshape(B * N, Tx, 1)
                             outputs = self.model(batch_x.permute(0, 2, 1).reshape(B * N, Tx, 1),
                                                  batch_x_mark.repeat(N, 1, 1), \
                                                  dec_inp.permute(0, 2, 1).reshape(B * N, Ty, 1),
@@ -236,7 +234,7 @@ class Exp_Long_Term_Forecast_Partial(Exp_Basic):
 
         return self.model
 
-    def test(self, setting, test=0):
+    def test(self, setting, test=0, return_data=False):
 
         test_data, test_loader = self._get_data(flag='test')
         if test:
@@ -341,6 +339,15 @@ class Exp_Long_Term_Forecast_Partial(Exp_Basic):
         np.save(folder_path + 'pred.npy', preds)
         np.save(folder_path + 'true.npy', trues)
 
+        if return_data:
+            metrics = {
+                'mae': mae,
+                'mse': mse,
+                'rmse': rmse,
+                'mape': mape,
+                'mspe': mspe
+            }
+            return metrics, preds
         return
 
     def predict(self, setting, load=False):
