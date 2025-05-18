@@ -133,3 +133,4 @@ dmypy.json
 # custom
 scripts/multivariate_forecasting/USDJPY/pretreatment/pretreatment_data/
 scripts/multivariate_forecasting/USDJPY/pretreatment/row_data/*.csv
+scripts/**/*.csv
