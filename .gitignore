@@ -131,4 +131,4 @@ dmypy.json
 .pyre/
 
 # custom
-scripts/multivariate_forecasting/USDJPY/pretreatment
+scripts/multivariate_forecasting/USDJPY/pretreatment/pretreatment_data/

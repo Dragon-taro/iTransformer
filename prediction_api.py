@@ -155,8 +155,7 @@ class USDJPYPredictionAPI:
         """
         # リクエストデータの作成
         seq_len, n_features = data.shape[1], data.shape[2]
-        
-        # 最小限のリクエストデータ
+    # 最小限のリクエストデータ
         request_data = {
             "input_data": data.tolist(),
             "seq_len": seq_len,

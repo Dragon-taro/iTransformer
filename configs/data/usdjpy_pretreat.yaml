@@ -1,0 +1,23 @@
+# USDJPY前処理設定
+window_size: 60  # 過去60分のデータを使用
+target_size: 10  # 将来10分間を予測
+frequency: '1T'  # 1分間隔でリサンプリング
+
+# 入力データと形式
+datetime_col: 'Gmt time'
+datetime_format: '%d.%m.%Y %H:%M:%S.%f'
+
+# 価格カラム設定
+price_cols: ['Open', 'High', 'Low', 'Close']
+target_col: 'Close'
+
+# データセット分割
+train_ratio: 0.8
+val_ratio: 0.1
+# test_ratio: 0.1 (残りの割合)
+
+# 欠損値処理
+missing_value_strategy: 'ffill'  # 前方補完
+
+# 出力設定
+output_dir: 'data/processed/usdjpy' 

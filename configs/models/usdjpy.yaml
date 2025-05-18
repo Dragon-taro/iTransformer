@@ -1,0 +1,42 @@
+# USDJPY iTransformer モデル設定
+model_id: usdjpy
+model_type: iTransformer
+data_type: custom
+features: M
+
+# データ設定
+scaler_path: scripts/multivariate_forecasting/USDJPY/pretreatment/pretreatment_data/usdjpy_scaler.joblib
+npz_path: scripts/multivariate_forecasting/USDJPY/pretreatment/pretreatment_data/usdjpy_windows.npz
+
+# 予測タスク
+seq_len: 60    # 過去60分のデータを使用
+label_len: 10  # ラベル長10分
+pred_len: 10   # 将来10分を予測
+
+# 特徴量と出力
+enc_in: 4   # OHLC=4つの特徴量
+dec_in: 4   # デコーダ入力も同じく4特徴量
+c_out: 1    # 出力はClose価格1つ
+feature_idx: 3  # Close価格は3番目
+
+# モデルアーキテクチャ
+d_model: 128
+n_heads: 8
+e_layers: 2
+d_layers: 1
+d_ff: 128
+factor: 1
+embed: timeF
+distil: true
+dropout: 0.1
+activation: gelu
+output_attention: false
+
+# 推論時設定
+inverse: true  # デフォルトで逆変換を有効化
+include_trade_suggestion: true  # 取引シグナルを生成
+use_gpu: true
+
+# その他
+class_strategy: projection
+exp_name: MTSF
